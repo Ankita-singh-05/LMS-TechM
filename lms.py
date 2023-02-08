@@ -14,16 +14,21 @@ from datetime import datetime
 from datetime import timedelta
 from datetime import date
 
+
+# Connecting to database
 db=sqlite3.connect('admin.db')
 dbstore=sqlite3.connect('StoreBooks.db')
 dbstudents=sqlite3.connect('StudentsData.db')
 
+# Landing Page Header Icon and Title
 root = Tk()
 root.title("Library Management System")
 root.iconbitmap("aa.ico")
 root.geometry("900x500+50+100")
 root.resizable(0, 0)
 
+
+# login form and landing page ui
 class main:
     def login(self):
         self.var1 = self.e1.get()
@@ -42,7 +47,9 @@ class main:
             
             self.lbb=Label(self.fm2,bg='#012727')
             self.lbb.place(x=15,y=5)
-            self.ig=PhotoImage(file='afterlogin1.png')
+
+            # after login background image
+            self.ig=PhotoImage(file='img1.png')
             self.lbb.config(image=self.ig)
             
             self.lb3=Label(self.fm2,text='LIBRARY MANAGEMENT SYSTEM',fg='White',bg='#012727',font=('times new roman',30,'bold'))
@@ -94,10 +101,11 @@ class main:
         self.lb7_hr.place(x=817, y=0, width=60, height=30)
         
         clock()
-        self.canvas8 = Canvas(self.fm3, bg='black', width=400, height=300)
+        self.canvas8 = Canvas(self.fm3, bg='white', width=400, height=300)
         self.canvas8.place(x=475, y=40)
         
-        self.photo9=PhotoImage(file="afterlogin1.png")
+        # After login image
+        self.photo9=PhotoImage(file="al.png")
         self.canvas8.create_image(0,0,image=self.photo9,anchor=NW)
         
         self.develop=Label(self.fm3,text='Developed By - GCP TEAM I',bg='#fff',fg='#d7837f',font=('Candara',12,'bold'))
@@ -186,6 +194,7 @@ class main:
                 self.fm1=Frame(self.fm,bg='#ffe8ec',width=500,height=360,bd=5,relief='flat')
                 self.fm1.place(x=200,y=15)
                 
+                # Backbutton
                 self.backbt = Button(self.fm, width=60, bg='#ffe8ec', bd=0, relief='flat',command=self.cur,activeforeground='black',activebackground='#ffe8ec')
                 self.backbt.place(x=2, y=7)
                 self.log = PhotoImage(file='backbtn1.png')
@@ -882,11 +891,16 @@ class main:
             self.fm=Frame(root,height=500,width=900,bg='white')
             self.fm.place(x=0,y=0)
 
-            self.canvas=Canvas(self.fm,height=500,width=900,bg='#000000')
+            # Landing Page background colour, height width
+            self.canvas=Canvas(self.fm,height=900,width=900,bg='#000')
             self.canvas.place(x=0,y=0)
 
-            self.fm1=Frame(self.canvas,height=260,width=300,bg='#000000',bd=3,relief='sunken')
-            self.fm1.place(x=300,y=120)
+            # Login Form 
+
+            # Login form frame 
+            #relief sunken is for border line for the login form -- other options-- groove, flat, raised
+            self.fm1=Frame(self.canvas,height=260,width=300,bg='#000000',bd=3,relief='sunken')   
+            self.fm1.place(x=100,y=120)
             
             self.b1=Label(self.fm1,text='User ID',bg='black',font=('Arial',10,'bold'),fg='white')
             self.b1.place(x=20,y=42)
@@ -900,30 +914,34 @@ class main:
             self.e2=Entry(self.fm1,width=22,show='*',font=('arial',9,'bold'),bd=4,relief='groove')
             self.e2.place(x=100,y=100)
 
-            self.photo=PhotoImage(file="afterlogin1.png")
+            # Login Page Background IMage
+            self.photo=PhotoImage(file="loginbg.png")
             self.canvas.create_image(200,25,image=self.photo,anchor=NW)
             
-            self.btn1=Button(self.fm1,text='  Login',fg='black',bg='yellow',width=100,font=('Arial',11,'bold'),activebackground='black',activeforeground='yellow',command=self.login,bd=3,relief='flat',cursor='hand2')
+            # Login and Clear Button
+            self.btn1=Button(self.fm1,text='  Login',fg='black',bg='#baf0f7',width=100,font=('Arial',11,'bold'),activebackground='black',activeforeground='yellow',command=self.login,bd=3,relief='flat',cursor='hand2')
             self.btn1.place(x=25,y=160)
             self.logo = PhotoImage(file=r"bt1.png")
             self.btn1.config(image=self.logo, compound=LEFT)
             self.small_logo = self.logo.subsample(1, 1)
             self.btn1.config(image=self.small_logo)
 
-
-            self.btn2=Button(self.fm1,text='  Clear',fg='black',bg='yellow',width=100,font=('Arial',11,'bold'),activebackground='black',activeforeground='yellow',bd=3,relief='flat',cursor='hand2',command=self.mainclear)
+            # Clear Button in login form
+            self.btn2=Button(self.fm1,text='  Clear',fg='black',bg='#b1b1ba',width=100,font=('Arial',11,'bold'),activebackground='black',activeforeground='yellow',bd=3,relief='flat',cursor='hand2',command=self.mainclear)
             self.btn2.place(x=155,y=160)
             self.log = PhotoImage(file=r"bt2.png")
             self.btn2.config(image=self.log, compound=LEFT)
             self.small_log = self.log.subsample(1, 1)
             self.btn2.config(image=self.small_log)
             
+            # Forgot password option
             self.forgot=Label(self.fm1,text='Forgot Password?',fg='White',bg='#000000',activeforeground='black',font=('cursive',9,'bold'))
             self.forgot.place(x=80,y=220)
             self.forgot.bind("<Button>",self.mouseClick)
 
             root.mainloop()
-            
+
+    # Changing the password with new password
     def mouseClick(self,event):
         self.rog=Tk()
         self.rog.title("Change password")
